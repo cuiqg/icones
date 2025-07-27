@@ -1,5 +1,6 @@
 <script setup lang='ts'>
-import type { PackType } from '../utils/pack'
+import type { PackType } from '../utils/svg'
+import { collections } from '../data'
 import { bags, clearBag } from '../store'
 import { PackIconFont, PackSVGSprite, PackZip } from '../utils/pack'
 
@@ -21,18 +22,21 @@ function clear() {
 async function packIconFont() {
   // TODO: customzie
   await PackIconFont(
+    collections,
     bags.value,
   )
 }
 
 async function packSVGSprite() {
   await PackSVGSprite(
+    collections,
     bags.value,
   )
 }
 
 async function PackSvgs(type: PackType = 'svg') {
   await PackZip(
+    collections,
     bags.value,
     'icones-bags',
     type,
@@ -82,6 +86,21 @@ async function PackSvgs(type: PackType = 'svg') {
         </button>
         <button class="btn small mr-1 mb-1 opacity-75" @click="PackSvgs('tsx')">
           React<sup class="opacity-50 -mr-1">TS</sup>
+        </button>
+        <button class="btn small mr-1 mb-1 opacity-75" @click="PackSvgs('svelte')">
+          Svelte
+        </button>
+        <button class="btn small mr-1 mb-1 opacity-75" @click="PackSvgs('qwik')">
+          Qwik
+        </button>
+        <button class="btn small mr-1 mb-1 opacity-75" @click="PackSvgs('solid')">
+          Solid
+        </button>
+        <button class="btn small mr-1 mb-1 opacity-75" @click="PackSvgs('astro')">
+          Astro
+        </button>
+        <button class="btn small mr-1 mb-1 opacity-75" @click="PackSvgs('react-native')">
+          React Native
         </button>
         <button class="btn small mr-1 mb-1 opacity-75" @click="PackSvgs('json')">
           JSON
